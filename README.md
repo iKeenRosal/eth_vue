@@ -37,4 +37,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 3. Need to connect to the database
 4. Add sorting of table columns
 5. Add pagination
-6. Fix/alter design according to reviewer
+6. Add search function
+7. Fix/alter design according to reviewer
