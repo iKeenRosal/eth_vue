@@ -41,10 +41,9 @@
                 </div>
                 <div class="form-group">
                     <br/>
-                    <!-- input class="btn btn-primary" type="submit" value="Submit Changes" -->
-                    <button class="btn btn-primary" @click="saveChanges">Save</button>
+                    <button class="btn btn-secondary" @click="cancelChanges">Cancel</button>
                     &nbsp;&nbsp;
-                    <button class="btn btn-primary" @click="cancelChanges">Cancel</button>
+                    <button class="btn btn-primary" @click="saveChanges">Save Changes</button>
                 </div>
             </form> 
         </div>
@@ -101,6 +100,7 @@ export default {
     },
     cancelChanges() {
       this.$emit('cancelUpdate', true);
+      return
     }
   }
 }

@@ -83,6 +83,11 @@ export default {
       this.editAction = false;
       this.addAction = true;
     },
+    cancelAdd: function() {
+      alert('nothing changes here');
+      //this.editAction = false;
+      //this.addAction = true;
+    },
   //-----------------START OF ROW DELETION ATTEMPT -------------//
     removeRow: function(index) {
       alert('about to delete this row');

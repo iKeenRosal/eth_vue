@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="text-left">
-            <form class="addgame-form text-left" @submit.prevent="onSubmit">
+            <form class="addgame-form text-left" @submit.prevent="onSubmit"> 
                 <div class="form-group">
                     <label for="publisher">Publisher<span class="required">*</span></label>
                     <input class="form-control" id="publisher" v-model="publisher" placeholder="Enter Publisher">
@@ -42,7 +42,10 @@
                 </div>
                 <div class="form-group">
                     <br/>
-                    <input class="btn btn-primary" type="submit" value="Add New Game">
+                    <!-- button type="reset" class="btn btn-secondary" @click="cancelAdd">Cancel</button -->
+                    <button type="reset" class="btn btn-secondary" @click="cancelAdd">Cancel</button>
+                    &nbsp;&nbsp;
+                    <input name="submit" class="btn btn-primary" type="submit" value="Add New Game">
                 </div>
             </form> 
         </div>
@@ -70,43 +73,45 @@ export default {
         }
     },
     methods: {
-      onSubmit() {
-        if (this.publisher === '' || this.name === '' || this.nickname === '' || this.rating === null || this.rating == '-1') {
-          this.successMsg = false;
-          this.errorMsgDuplicate = false;
-          this.errorMsg = true;
-          return
-        }
-
-        for(let index=0; index < this.newgames.length; ++index) {
-            const element = this.newgames[index];
-            if(element.publisher == this.publisher && element.name == this.name) {
+        onSubmit() {
+            if (this.publisher === '' || this.name === '' || this.nickname === '' || this.rating === null || this.rating == '-1') {
                 this.successMsg = false;
-                this.errorMsg = false;
-                this.errorMsgDuplicate = true;
-                return 
+                this.errorMsgDuplicate = false;
+                this.errorMsg = true;
+                return
             }
-        }
 
+            for(let index=0; index < this.newgames.length; ++index) {
+                const element = this.newgames[index];
+                if(element.publisher == this.publisher && element.name == this.name) {
+                    this.successMsg = false;
+                    this.errorMsg = false;
+                    this.errorMsgDuplicate = true;
+                    return 
+                }
+            }
 
-
-
-        let gameReview = {
-            publisher: this.publisher,
-            name: this.name,
-            nickname: this.nickname,
-            rating: this.rating,
-        }
-        this.$emit('addgame-submitted', gameReview);
-        
-        this.publisher = ''
-        this.name = ''
-        this.nickname = ''
-        this.rating = null
-        this.errorMsg = ''
-        this.errorMsgDuplicate = ''
-        this.successMsg = true
-    }
+            let gameReview = {
+                publisher: this.publisher,
+                name: this.name,
+                nickname: this.nickname,
+                rating: this.rating,
+            }
+            this.$emit('addgame-submitted', gameReview);
+            
+            this.publisher = '';
+            this.name = '';
+            this.nickname = '';
+            this.rating = null;
+            this.errorMsg = false;
+            this.errorMsgDuplicate = false;
+            this.successMsg = true;
+        },
+        cancelAdd() {
+            this.errorMsgDuplicate = false;
+            this.errorMsg = false;
+            this.successMsg = false;
+        },
     }
 }
 </script>
