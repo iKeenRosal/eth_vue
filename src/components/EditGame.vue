@@ -74,7 +74,17 @@ export default {
   methods: {
     saveChanges() {
 
-     for(let index=0; index < this.newgames.length; ++index) {
+      if ( this.$refs['publisher'].value === '' 
+        || this.$refs['name'].value === '' 
+        || this.$refs['nickname'].value === '' 
+        || this.$refs['rating'].value === null || this.$refs['rating'].value == '-1') {
+          this.successMsg = false;
+          this.errorMsgDuplicate = false;
+          this.errorMsg = true;
+          return
+      }
+
+      for(let index=0; index < this.newgames.length; ++index) {
         const element = this.newgames[index];
         if(element.publisher == this.$refs['publisher'].value && element.name == this.$refs['name'].value) {
             this.successMsg = false;
