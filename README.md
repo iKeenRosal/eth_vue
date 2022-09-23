@@ -24,6 +24,9 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 # vue-do-game
 
+### Working functionality
+0. Adding new game - some validation
+1. Listing games
 
 ### Current Status
 0. Need validation on add new game so that identical game cannot be added
