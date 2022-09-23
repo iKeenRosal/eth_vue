@@ -13,7 +13,7 @@
                   Keyword(s) found below
               </div>
           </div>
-          <GameList :newgames="newgames" />
+          <GameList v-if="newgames.length" :newgames="newgames" />
         </div>
       </div>
       <div class="col-lg-3 float-right">
@@ -26,10 +26,7 @@
             <EditGame />
           </div>
           <div v-if="addAction">
-            <AddNewGame />
-          </div>
-          <div v-if="addAction2">
-            <AddNewGameVersion2 @addgame-submitted="addGame" />
+            <AddNewGame @addgame-submitted="addGame" />
           </div>
         </div>
       </div>
@@ -41,7 +38,6 @@
 import AddNewGame from './components/AddNewGame.vue'
 import EditGame from './components/EditGame.vue'
 import SearchForm from './components/SearchForm.vue'
-import AddNewGameVersion2 from './components/AddNewGame_version2.vue'
 import GameList from './components/GameList.vue'
 
 export default {
@@ -50,14 +46,12 @@ export default {
     AddNewGame,
     EditGame,
     SearchForm,
-    AddNewGameVersion2,
     GameList,
   },
   data () {
     return {
       editAction: false,
-      addAction: false,
-      addAction2: true,
+      addAction: true,
       newgames: []
     }
   },

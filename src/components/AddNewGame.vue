@@ -1,7 +1,7 @@
 <template>
     <div id="addGameContainer">
         <div>
-            <h3 class="text-dark">Add a new game (HTML Version)</h3>
+            <h3 class="text-dark">Add a New Game</h3>
             <hr class="bg-info">
             <div class="alert alert-danger" v-if="errorMsg">
                 Error Message
@@ -11,26 +11,34 @@
             </div>
         </div>
         <div class="text-left">
-            <form method="post" action="" name="create_game">
+            <form class="addgame-form" @submit.prevent="onSubmit">
                 <div class="form-group">
-                    <label for="gameInputPublisher">Publisher</label>
-                    <input type="email" class="form-control" id="gameInputPublisher" placeholder="Enter Publisher">
+                    <label for="publisher">Publisher</label>
+                    <input class="form-control" id="publisher" v-model="publisher" placeholder="Enter Publisher">
                 </div>
                 <div class="form-group">
-                    <label for="gameInputName">Name</label>
-                    <input type="password" class="form-control" id="gameInputName" placeholder="Enter Name">
+                    <label for="name">Name</label>
+                    <input class="form-control" id="name" v-model="name" placeholder="Enter Name">
                 </div>
                 <div class="form-group">
-                    <label for="gameInputNickname">Nickname</label>
-                    <input type="password" class="form-control" id="gameInputNickname" placeholder="Enter Nickname">
-                </div>
-                <div class="form-group">
-                    <label for="gameInputNumberRating">Name</label>
-                    <input type="password" class="form-control" id="gameInputNumberRating" placeholder="Enter Number Rating">
+                    <label for="nickname">Nickname</label>
+                    <input class="form-control" id="nickname" v-model="nickname" placeholder="Enter Nickname">
                 </div>
                 <div class="form-group">
                     <br/>
-                    <button type="submit" class="btn btn-primary">Add Game</button>
+                    <label for="rating">Rating</label>&nbsp;&nbsp;
+                    <select class="bootstraps-select" id="rating" v-model.number="rating">
+                        <option value="-1" selected="selected">Select Rating Here</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <br/>
+                    <input class="btn btn-primary" type="submit" value="Submit">
                 </div>
             </form> 
         </div>
@@ -39,33 +47,38 @@
 
 <script>
 export default {
-  name: 'AddNewGame',
+  name: 'AddNewGameVersion2',
   props: {
     msg: String
   },
-  data () {
-    return {
-        errorMsg: false,
-        successMsg: false,
+  data() {
+        return {
+            publisher: '',
+            name: '',
+            nickname: '',
+            rating: null
+        }
+    },
+    methods: {
+      onSubmit() {
+        if (this.publisher === '' || this.name === '' || this.nickname === '' || this.rating === null) {
+          alert('Review is incomplete. Please fill out every field.')
+          return
+        }
+
+        let productReview = {
+            publisher: this.publisher,
+            name: this.name,
+            nickname: this.nickname,
+            rating: this.rating,
+        }
+        this.$emit('addgame-submitted', productReview)
+        
+        this.publisher = ''
+        this.name = ''
+        this.nickname = ''
+        this.rating = null
+      }
     }
-  }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

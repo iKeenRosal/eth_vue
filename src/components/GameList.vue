@@ -11,21 +11,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="text-center">
-            <td>1</td>
-            <td>Coconut Game</td>
-            <td>Coconut Cool Game</td>
-            <td>5</td>
-            <td><a href="#" class="text-success"><i class="fa fa-edit"></i></a></td>
-            <td><a href="#" class="text-danger"><i class="fa fa-trash"></i></a></td>
-          </tr>
           <tr class="text-center" v-for="(newgame, index) in newgames" :key="index">
             <td>{{ newgame.publisher }}</td>
             <td>{{ newgame.name }}</td>
             <td>{{ newgame.nickname }}</td>
             <td>{{ newgame.rating }}</td>
-            <td><a href="#" class="text-success"><i class="fa fa-edit"></i></a></td>
-            <td><a href="#" class="text-danger"><i class="fa fa-trash"></i></a></td>
+            <td><a href="#" class="text-success"><i class="fa fa-edit"></i> id: {{ index }}</a></td>
+            <td><a href="#" class="text-danger"><i class="fa fa-trash"></i> id: {{ index }}</a></td>
           </tr>
         </tbody>
     </table>
