@@ -25,8 +25,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 # vue-do-game
 
 ### Working functionality
-0. Adding new game - form, submission, required fields validation, publisher/name combination duplication validation
-1. Edit existing game - form
+0. Adding new game - form, submission, required fields validation, publisher/name combination duplication validation, cancel/reset button
+1. Edit existing game - form, submission, required fields validation, publisher/name combination duplication validation, cancel button
 2. Search game - form
 3. Listing games
 
