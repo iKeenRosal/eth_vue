@@ -25,13 +25,12 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 # vue-do-game
 
 ### Working functionality
-0. Adding new game - form, submission, some validation
+0. Adding new game - form, submission, required fields validation, publisher/name combination duplication validation
 1. Edit existing game - form
 2. Search game - form
 3. Listing games
 
 ### Current Status
-0. Need validation on add new game so that identical game cannot be added
 1. Need Allow edit of the game
 
     a. How can I repopulate the selected 'select' option on edit form? is there such a thing as 
