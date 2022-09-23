@@ -4,10 +4,10 @@
             <h3 class="text-dark">Add a New Game</h3>
             <hr class="bg-info">
             <div class="alert alert-danger" v-if="errorMsg">
-                Error Message
+                Error: All fields are required. Please try again..
             </div>
             <div class="alert alert-success" v-if="successMsg">
-                Success Message
+                Game was added successfully
             </div>
         </div>
         <div class="text-left">
@@ -56,28 +56,33 @@ export default {
             publisher: '',
             name: '',
             nickname: '',
-            rating: null
+            rating: null,
+            errorMsg: false,
+            successMsg: false,
         }
     },
     methods: {
       onSubmit() {
         if (this.publisher === '' || this.name === '' || this.nickname === '' || this.rating === null) {
-          alert('Review is incomplete. Please fill out every field.')
+          this.successMsg = false;
+          this.errorMsg = true;
           return
         }
 
-        let productReview = {
+        let gameReview = {
             publisher: this.publisher,
             name: this.name,
             nickname: this.nickname,
             rating: this.rating,
         }
-        this.$emit('addgame-submitted', productReview)
+        this.$emit('addgame-submitted', gameReview)
         
         this.publisher = ''
         this.name = ''
         this.nickname = ''
         this.rating = null
+        this.errorMsg = ''
+        this.successMsg = true
       }
     }
 }
