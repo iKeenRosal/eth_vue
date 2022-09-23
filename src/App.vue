@@ -59,10 +59,22 @@ export default {
       hasGames: false,
       rowCounter: 0,
       currentGameData: [],
-      newgames: []
+      newgames: [
+        {publisher: "Activision", name: "Saga", nickname: "top down", rating:"5"},
+      ]
     }
   },
+  mounted: function() {
+    this.onLoad();
+  },
   methods: {
+   onLoad() {
+      if(this.newgames != null)
+      {
+        this.hasGames = true;
+      }
+      this.rowCounter = this.newgames.length;
+   },
    addGame(newgame) {
       this.newgames.push(newgame);
       this.hasGames = true;

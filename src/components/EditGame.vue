@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <br/>
                     <label for="rating">Rating<span class="required">*</span></label>&nbsp;&nbsp;
-                    <select class="bootstraps-select" id="rating" ref="rating"  :value="currentGameData.nickname">
+                    <select class="bootstraps-select" id="rating" ref="rating"  :value="currentGameData.rating">
                         <option value="-1">Select Rating Here</option>
                         <option value="5">5</option>
                         <option value="4">4</option>
