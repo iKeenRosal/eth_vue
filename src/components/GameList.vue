@@ -20,7 +20,7 @@
             <td>{{ newgame.name }}</td>
             <td>{{ newgame.nickname }}</td>
             <td>{{ newgame.rating }}</td>
-            <td><button class="text-success" @click='updateRow(index)'><i class="fa fa-edit"></i></button></td>
+            <td><button class="text-success" @click='updateRowForm(index, newgame)'><i class="fa fa-edit"></i></button></td>
             <td><button class="text-danger" @click='removeRow(index)'><i class="fa fa-trash"></i></button></td>
           </tr>
         </tbody>
@@ -43,26 +43,14 @@ export default {
     }
   },
   methods: {
-    //-----------------START OF ROW UPDATE ATTEMPT -------------//
-    updateRow: function(index) {
-      alert('about to delete this row #: ' + index);
+    updateRowForm: function(index, currentgame) {
+      this.currentGame = currentgame;
+      this.$emit('fireEditForm', currentgame);
     },
-    //-----------------END OF ROW UPDATE ATTEMPT -------------//
 
     //-----------------START OF ROW DELETION ATTEMPT -------------//
     removeRow: function(index) {
       alert('about to delete this row #: ' + index);
-
-      
-      //????????????????????????????????????????????????????????????????????
-      //--- THESE are variables from the App.vue file
-      // ??????? --- How can I access variables from another VUE component??
-
-      //this.rowCounter--;
-      //newgames.splice(index, 1);
-      //????????????????????????????????????????????????????????????????????
-
-
 
     },
     //-----------------END OF ROW DELETION ATTEMPT -------------//

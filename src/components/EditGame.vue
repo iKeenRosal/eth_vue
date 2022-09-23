@@ -4,33 +4,41 @@
             <h3 class="text-dark">Edit Game</h3>
             <hr class="bg-info">
             <div class="alert alert-danger" v-if="errorMsg">
-                Update failed
+                Error: Failed to update game. Please try again..
             </div>
             <div class="alert alert-success" v-if="successMsg">
-                Update Successful 
+                Game was updated
             </div>
         </div>
         <div class="text-left">
-            <form method="post" action="" name="create_game">
+            <form class="editgame-form text-left" @submit.prevent="onSubmit" >
                 <div class="form-group">
-                    <label for="gameInputPublisher">Publisher</label>
-                    <input type="email" class="form-control" id="gameInputPublisher" placeholder="Enter Publisher">
+                    <label for="publisher">Publisher<span class="required">*</span></label>
+                    <input class="form-control" id="publisher" ref="publisher" :value="currentGameData.publisher">
+                </div> 
+                <div class="form-group">
+                    <label for="name">Name<span class="required">*</span></label>
+                    <input class="form-control" id="name" ref="name" :value="currentGameData.name">
                 </div>
                 <div class="form-group">
-                    <label for="gameInputName">Name</label>
-                    <input type="password" class="form-control" id="gameInputName" placeholder="Enter Name">
-                </div>
-                <div class="form-group">
-                    <label for="gameInputNickname">Nickname</label>
-                    <input type="password" class="form-control" id="gameInputNickname" placeholder="Enter Nickname">
-                </div>
-                <div class="form-group">
-                    <label for="gameInputNumberRating">Name</label>
-                    <input type="password" class="form-control" id="gameInputNumberRating" placeholder="Enter Number Rating">
+                    <label for="nickname">Nickname<span class="required">*</span></label>
+                    <input class="form-control" id="nickname" ref="nickname" :value="currentGameData.nickname">
                 </div>
                 <div class="form-group">
                     <br/>
-                    <button type="submit" class="btn btn-primary">Update Game</button>
+                    <label for="rating">Rating<span class="required">*</span></label>&nbsp;&nbsp;
+                    <select class="bootstraps-select" id="rating" ref="nickname">
+                        <option value="-1">Select Rating Here</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <br/>
+                    <input class="btn btn-primary" type="submit" value="Submit Changes">
                 </div>
             </form> 
         </div>
@@ -41,18 +49,21 @@
 export default {
   name: 'EditGame',
   props: {
-    msg: String
+    currentGameData: {
+      type: Array,
+      required: true
+    }
   },
   data () {
     return {
         errorMsg: false,
         successMsg: false,
     }
+  },
+  method () {
   }
-  
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {

@@ -26,9 +26,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 ### Current Status
+0. Need validation on add new game so that identical game cannot be added
 1. Allow edit of the game
 
-    Current challenge: How can I reference variables within a .vue file from another .vue file? Check use of global variable
+    a. How can I repopulate the selected 'select' option on edit form? is there such a thing as 
+    b. Need to add 'cancel' button
     
 2. Allow delition of the game
 3. Connect to the database

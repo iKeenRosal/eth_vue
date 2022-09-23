@@ -16,7 +16,7 @@
                   Keyword(s) found below
               </div>
           </div>
-          <GameList v-if="newgames.length" :newgames="newgames" />
+          <GameList v-if="newgames.length" :newgames="newgames" @fireEditForm="updateFormAppVue"/>
         </div>
       </div>
       <div class="col-lg-3 float-right">
@@ -24,9 +24,10 @@
           <SearchForm />
         </div>
         <hr class="" />
-        <div id="actionGameContainer" class="bg-light p-3 border">
+        <div id="actionGameContainer" class="bg-light p-3 border border-primary">
           <div v-if="editAction">
-            <EditGame />
+            <!-- EditGame @editgame-submitted="editGame" v-if="currentGameData.array" :currentGameData="currentGameData"/ -->
+            <EditGame @editgame-submitted="editGame" :currentGameData="currentGameData"/>
           </div>
           <div v-if="addAction">
             <AddNewGame @addgame-submitted="addGame" />
@@ -57,6 +58,7 @@ export default {
       addAction: true,
       hasGames: false,
       rowCounter: 0,
+      currentGameData: [],
       newgames: []
     }
   },
@@ -65,6 +67,14 @@ export default {
       this.newgames.push(newgame);
       this.hasGames = true;
       this.rowCounter++;
+    },
+    editGame(currentgame) {
+      alert('edit game submission from App.vue : ' + currentgame.name + ' / ' + currentgame.name);
+    },
+    updateFormAppVue: function(currentgame) { 
+      this.editAction = true;
+      this.addAction = false;
+      this.currentGameData = currentgame; //for now sending name. pass array later.
     },
   //-----------------START OF ROW DELETION ATTEMPT -------------//
     removeRow: function(index) {
