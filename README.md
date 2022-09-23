@@ -31,15 +31,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 3. Listing games
 
 ### Current Status
-1. Need Allow edit of the game
-
-    a. How can I repopulate the selected 'select' option on edit form? is there such a thing as 
-
-    b. Need to add 'cancel' button within edit form
-    
-2. Need to allow delition of the game
-3. Need to connect to the database
-4. Add sorting of table columns
-5. Add pagination
-6. Add search function
-7. Fix/alter design according to reviewer
+1. Need to allow delition of the game
+2. Need to connect to the database
+3. Add sorting of table columns
+4. Add pagination
+5. Add search function
+6. Fix/alter design according to reviewer
