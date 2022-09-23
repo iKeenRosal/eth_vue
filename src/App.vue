@@ -56,14 +56,23 @@ export default {
       editAction: false,
       addAction: true,
       hasGames: false,
+      rowCounter: 0,
       newgames: []
     }
   },
   methods: {
    addGame(newgame) {
-      this.newgames.push(newgame)
-      this.hasGames = true
-    }
+      this.newgames.push(newgame);
+      this.hasGames = true;
+      this.rowCounter++;
+    },
+  //-----------------START OF ROW DELETION ATTEMPT -------------//
+    removeRow: function(index) {
+      alert('about to delete this row');
+      this.rowCounter--;
+      this.newgames.splice(index, 1);
+    },
+    //-----------------END OF ROW DELETION ATTEMPT -------------//
   },
 }
 

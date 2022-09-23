@@ -2,6 +2,7 @@
     <table id="listOfGames" class="table table-bordered table-stripped mr-20">
         <thead>
           <tr class="text-center bg-dark text-light">
+            <!--th>Index</th-->
             <th>Publisher</th>
             <th>Name</th>
             <th>Nickname</th>
@@ -11,13 +12,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="text-center" v-for="(newgame, index) in newgames" :key="index">
-            <td>{{ newgame.publisher }}</td>
+          <tr class="text-center" v-for="(newgame, index) in newgames" :key="index" >
+            <!--td>{{ index }}</td-->
+            <!--td><input type="text" v-model="newgame.publisher"></td--> <!-- delete -->
+            <!--td><input type="text" v-model="newgame.publisher" v-bind:disabled="disabled"></td--> <!-- edit -->
+            <td>{{ newgame.publisher }}</td> <!-- plain text -->
             <td>{{ newgame.name }}</td>
             <td>{{ newgame.nickname }}</td>
             <td>{{ newgame.rating }}</td>
-            <td><a href="#" class="text-success"><i class="fa fa-edit"></i> id: {{ index }}</a></td>
-            <td><a href="#" class="text-danger"><i class="fa fa-trash"></i> id: {{ index }}</a></td>
+            <td><button class="text-success" @click='updateRow(index)'><i class="fa fa-edit"></i></button></td>
+            <td><button class="text-danger" @click='removeRow(index)'><i class="fa fa-trash"></i></button></td>
           </tr>
         </tbody>
     </table>
@@ -39,6 +43,29 @@ export default {
     }
   },
   methods: {
+    //-----------------START OF ROW UPDATE ATTEMPT -------------//
+    updateRow: function(index) {
+      alert('about to delete this row #: ' + index);
+    },
+    //-----------------END OF ROW UPDATE ATTEMPT -------------//
+
+    //-----------------START OF ROW DELETION ATTEMPT -------------//
+    removeRow: function(index) {
+      alert('about to delete this row #: ' + index);
+
+      
+      //????????????????????????????????????????????????????????????????????
+      //--- THESE are variables from the App.vue file
+      // ??????? --- How can I access variables from another VUE component??
+
+      //this.rowCounter--;
+      //newgames.splice(index, 1);
+      //????????????????????????????????????????????????????????????????????
+
+
+
+    },
+    //-----------------END OF ROW DELETION ATTEMPT -------------//
     "sortTable": function sortTable(col) {
       if (this.sortColumn === col) {
         this.ascending = !this.ascending;
