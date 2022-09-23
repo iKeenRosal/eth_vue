@@ -30,7 +30,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 1. Allow edit of the game
 
     a. How can I repopulate the selected 'select' option on edit form? is there such a thing as 
-    b. Need to add 'cancel' button
+
+    b. Need to add 'cancel' button within edit form
     
 2. Allow delition of the game
 3. Connect to the database
