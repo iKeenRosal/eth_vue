@@ -27,7 +27,7 @@
         <div id="actionGameContainer" class="bg-light p-3 border border-primary">
           <div v-if="editAction">
             <!-- EditGame @editgame-submitted="editGame" v-if="currentGameData.array" :currentGameData="currentGameData"/ -->
-            <EditGame @editgame-submitted="editGame" :currentGameData="currentGameData" :newgames="newgames" @fireEditFormSubmit="updateFormSubmitAppVue"/>
+            <EditGame @editgame-submitted="editGame" :currentGameData="currentGameData" :newgames="newgames" @fireEditFormSubmit="updateFormSubmitAppVue" @cancelUpdate="cancelUpdate"/>
           </div>
           <div v-if="addAction">
             <AddNewGame @addgame-submitted="addGame" :newgames="newgames"/>
@@ -78,6 +78,10 @@ export default {
       this.currentGameData.name = currentgame['name'].value;
       this.currentGameData.nickname = currentgame['nickname'].value;
       this.currentGameData.rating = currentgame['rating'].value;
+    },
+    cancelUpdate: function() {
+      this.editAction = false;
+      this.addAction = true;
     },
   //-----------------START OF ROW DELETION ATTEMPT -------------//
     removeRow: function(index) {

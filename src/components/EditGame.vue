@@ -44,7 +44,7 @@
                     <!-- input class="btn btn-primary" type="submit" value="Submit Changes" -->
                     <button class="btn btn-primary" @click="saveChanges">Save</button>
                     &nbsp;&nbsp;
-                    <button class="btn btn-primary" >Cancel</button>
+                    <button class="btn btn-primary" @click="cancelChanges">Cancel</button>
                 </div>
             </form> 
         </div>
@@ -99,6 +99,9 @@ export default {
       this.errorMsg = false;
       this.errorMsgDuplicate = false;
     },
+    cancelChanges() {
+      this.$emit('cancelUpdate', true);
+    }
   }
 }
 </script>
