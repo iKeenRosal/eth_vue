@@ -6,6 +6,9 @@
             <div class="alert alert-danger" v-if="errorMsg">
                 Error: All fields are required. Please try again..
             </div>
+            <div class="alert alert-danger" v-if="errorMsgDuplicate">
+                Invalid: Publisher and Name combinatin already exists. 
+            </div>
             <div class="alert alert-success" v-if="successMsg">
                 Well Done! Game was added successfully. 
                 <br/> Check it out in the List of Games table
@@ -48,9 +51,12 @@
 
 <script>
 export default {
-  name: 'AddNewGameVersion2',
+  name: 'AddNewGame',
   props: {
-    msg: String
+    newgames: {
+      type: Array,
+      required: true
+    }
   },
   data() {
         return {
@@ -58,6 +64,7 @@ export default {
             name: '',
             nickname: '',
             rating: null,
+            errorMsgDuplicate: false,
             errorMsg: false,
             successMsg: false,
         }
@@ -66,9 +73,23 @@ export default {
       onSubmit() {
         if (this.publisher === '' || this.name === '' || this.nickname === '' || this.rating === null || this.rating == '-1') {
           this.successMsg = false;
+          this.errorMsgDuplicate = false;
           this.errorMsg = true;
           return
         }
+
+        for(let index=0; index < this.newgames.length; ++index) {
+            const element = this.newgames[index];
+            if(element.publisher == this.publisher && element.name == this.name) {
+                this.successMsg = false;
+                this.errorMsg = false;
+                this.errorMsgDuplicate = true;
+                return 
+            }
+        }
+
+
+
 
         let gameReview = {
             publisher: this.publisher,
@@ -76,15 +97,16 @@ export default {
             nickname: this.nickname,
             rating: this.rating,
         }
-        this.$emit('addgame-submitted', gameReview)
+        this.$emit('addgame-submitted', gameReview);
         
         this.publisher = ''
         this.name = ''
         this.nickname = ''
         this.rating = null
         this.errorMsg = ''
+        this.errorMsgDuplicate = ''
         this.successMsg = true
-      }
+    }
     }
 }
 </script>

@@ -30,7 +30,7 @@
             <EditGame @editgame-submitted="editGame" :currentGameData="currentGameData"/>
           </div>
           <div v-if="addAction">
-            <AddNewGame @addgame-submitted="addGame" />
+            <AddNewGame @addgame-submitted="addGame" :newgames="newgames"/>
           </div>
         </div>
       </div>
@@ -68,6 +68,9 @@ export default {
       this.hasGames = true;
       this.rowCounter++;
     },
+    newgameDuplicationChecker() {
+
+    }, 
     editGame(currentgame) {
       alert('edit game submission from App.vue : ' + currentgame.name + ' / ' + currentgame.name);
     },
