@@ -61,6 +61,8 @@ export default {
       currentGameData: [],
       newgames: [
         {publisher: "Activision", name: "Saga", nickname: "top down", rating:"5"},
+        {publisher: "Roblox Corporation", name: "Roblox", nickname: "Nephew's Favorite Games", rating:"5"},
+        {publisher: "Moonton", name: "Mobile Legends: Bang Bang", nickname: "ML or MLBB - mobile multiplayer", rating:"5"},
       ]
     }
   },
