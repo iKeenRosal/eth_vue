@@ -27,13 +27,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Working functionality
 0. Adding new game - form, submission, required fields validation, publisher/name combination duplication validation, cancel/reset button
 1. Edit existing game - form, submission, required fields validation, publisher/name combination duplication validation, cancel button
-2. Search game - form
-3. Listing games
+2. Delete game - submission
+3. Search game - form
+4. Listing games
 
-### Current Status
-1. Need to allow delition of the game
-2. Need to connect to the database
-3. Add sorting of table columns
-4. Add pagination
-5. Add search function
-6. Fix/alter design according to reviewer
+### In-progress
+1. Need to connect to the database
+2. Add sorting of table columns
+3. Add pagination
+4. Add search function
+5. Fix/alter design according to reviewer

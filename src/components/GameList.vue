@@ -47,13 +47,10 @@ export default {
       this.currentGame = currentgame;
       this.$emit('fireEditForm', currentgame);
     },
-
-    //-----------------START OF ROW DELETION ATTEMPT -------------//
     removeRow: function(index) {
-      alert('about to delete this row #: ' + index);
+      this.$emit('deleteRecord', index);
 
     },
-    //-----------------END OF ROW DELETION ATTEMPT -------------//
     "sortTable": function sortTable(col) {
       if (this.sortColumn === col) {
         this.ascending = !this.ascending;

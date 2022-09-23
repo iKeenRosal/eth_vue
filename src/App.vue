@@ -16,7 +16,7 @@
                   Keyword(s) found below
               </div>
           </div>
-          <GameList v-if="newgames.length" :newgames="newgames" @fireEditForm="updateFormAppVue"/>
+          <GameList v-if="newgames.length" :newgames="newgames" @fireEditForm="updateFormAppVue" @deleteRecord="deleteRecord"/>
         </div>
       </div>
       <div class="col-lg-3 float-right">
@@ -85,16 +85,16 @@ export default {
     },
     cancelAdd: function() {
       alert('nothing changes here');
-      //this.editAction = false;
-      //this.addAction = true;
     },
-  //-----------------START OF ROW DELETION ATTEMPT -------------//
-    removeRow: function(index) {
-      alert('about to delete this row');
+    deleteRecord: function(index) {
       this.rowCounter--;
       this.newgames.splice(index, 1);
+
+      if(this.rowCounter==0)
+      {
+        this.hasGames = false;
+      }
     },
-    //-----------------END OF ROW DELETION ATTEMPT -------------//
   },
 }
 
