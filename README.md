@@ -25,8 +25,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 # vue-do-game
 
 ### Working functionality
-0. Adding new game - some validation
-1. Listing games
+0. Adding new game - form, submission, some validation
+1. Edit existing game - form
+2. Search game - form
+3. Listing games
 
 ### Current Status
 0. Need validation on add new game so that identical game cannot be added
