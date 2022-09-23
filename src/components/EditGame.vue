@@ -6,8 +6,11 @@
             <div class="alert alert-danger" v-if="errorMsg">
                 Error: Failed to update game. Please try again..
             </div>
+            <div class="alert alert-danger" v-if="errorMsgDuplicate">
+                Invalid: Publisher and Name combination already exists. 
+            </div>
             <div class="alert alert-success" v-if="successMsg">
-                Game was updated
+                Game was updated successfully
             </div>
         </div>
         <div class="text-left">
@@ -27,7 +30,7 @@
                 <div class="form-group">
                     <br/>
                     <label for="rating">Rating<span class="required">*</span></label>&nbsp;&nbsp;
-                    <select class="bootstraps-select" id="rating" ref="nickname">
+                    <select class="bootstraps-select" id="rating" ref="rating"  :value="currentGameData.nickname">
                         <option value="-1">Select Rating Here</option>
                         <option value="5">5</option>
                         <option value="4">4</option>
@@ -38,7 +41,10 @@
                 </div>
                 <div class="form-group">
                     <br/>
-                    <input class="btn btn-primary" type="submit" value="Submit Changes">
+                    <!-- input class="btn btn-primary" type="submit" value="Submit Changes" -->
+                    <button class="btn btn-primary" @click="saveChanges">Save</button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-primary" >Cancel</button>
                 </div>
             </form> 
         </div>
@@ -52,15 +58,37 @@ export default {
     currentGameData: {
       type: Array,
       required: true
+    },
+    newgames: {
+      type: Array,
+      required: true
     }
   },
   data () {
     return {
+        errorMsgDuplicate: false,
         errorMsg: false,
         successMsg: false,
     }
   },
-  method () {
+  methods: {
+    saveChanges() {
+
+     for(let index=0; index < this.newgames.length; ++index) {
+        const element = this.newgames[index];
+        if(element.publisher == this.$refs['publisher'].value && element.name == this.$refs['name'].value) {
+            this.successMsg = false;
+            this.errorMsg = false;
+            this.errorMsgDuplicate = true;
+            return 
+        }
+      }
+
+      this.$emit('fireEditFormSubmit', this.$refs);
+      this.successMsg = true;
+      this.errorMsg = false;
+      this.errorMsgDuplicate = false;
+    },
   }
 }
 </script>

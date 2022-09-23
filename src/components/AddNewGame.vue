@@ -7,7 +7,7 @@
                 Error: All fields are required. Please try again..
             </div>
             <div class="alert alert-danger" v-if="errorMsgDuplicate">
-                Invalid: Publisher and Name combinatin already exists. 
+                Invalid: Publisher and Name combination already exists. 
             </div>
             <div class="alert alert-success" v-if="successMsg">
                 Well Done! Game was added successfully. 

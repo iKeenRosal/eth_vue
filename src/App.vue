@@ -27,7 +27,7 @@
         <div id="actionGameContainer" class="bg-light p-3 border border-primary">
           <div v-if="editAction">
             <!-- EditGame @editgame-submitted="editGame" v-if="currentGameData.array" :currentGameData="currentGameData"/ -->
-            <EditGame @editgame-submitted="editGame" :currentGameData="currentGameData"/>
+            <EditGame @editgame-submitted="editGame" :currentGameData="currentGameData" :newgames="newgames" @fireEditFormSubmit="updateFormSubmitAppVue"/>
           </div>
           <div v-if="addAction">
             <AddNewGame @addgame-submitted="addGame" :newgames="newgames"/>
@@ -68,16 +68,16 @@ export default {
       this.hasGames = true;
       this.rowCounter++;
     },
-    newgameDuplicationChecker() {
-
-    }, 
-    editGame(currentgame) {
-      alert('edit game submission from App.vue : ' + currentgame.name + ' / ' + currentgame.name);
-    },
     updateFormAppVue: function(currentgame) { 
       this.editAction = true;
       this.addAction = false;
       this.currentGameData = currentgame; //for now sending name. pass array later.
+    },
+    updateFormSubmitAppVue: function(currentgame) {
+      this.currentGameData.publisher = currentgame['publisher'].value;
+      this.currentGameData.name = currentgame['name'].value;
+      this.currentGameData.nickname = currentgame['nickname'].value;
+      this.currentGameData.rating = currentgame['rating'].value;
     },
   //-----------------START OF ROW DELETION ATTEMPT -------------//
     removeRow: function(index) {
