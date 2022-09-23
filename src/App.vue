@@ -6,6 +6,9 @@
           <h3>List of Games</h3>
             <div>
               <hr class="bg-info">
+              <div class="alert alert-info" v-if="!hasGames">
+                  There is currently no games in the list. Add a new game.
+              </div>
               <div class="alert alert-danger" v-if="errorMsg">
                   Keyword(s) was not found
               </div>
@@ -52,12 +55,14 @@ export default {
     return {
       editAction: false,
       addAction: true,
+      hasGames: false,
       newgames: []
     }
   },
   methods: {
    addGame(newgame) {
       this.newgames.push(newgame)
+      this.hasGames = true
     }
   },
 }

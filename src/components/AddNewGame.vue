@@ -7,11 +7,12 @@
                 Error: All fields are required. Please try again..
             </div>
             <div class="alert alert-success" v-if="successMsg">
-                Game was added successfully
+                Well Done! Game was added successfully. 
+                <br/> Check it out in the List of Games table
             </div>
         </div>
         <div class="text-left">
-            <form class="addgame-form" @submit.prevent="onSubmit">
+            <form class="addgame-form text-left" @submit.prevent="onSubmit">
                 <div class="form-group">
                     <label for="publisher">Publisher</label>
                     <input class="form-control" id="publisher" v-model="publisher" placeholder="Enter Publisher">
@@ -38,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <br/>
-                    <input class="btn btn-primary" type="submit" value="Submit">
+                    <input class="btn btn-primary" type="submit" value="Add New Game">
                 </div>
             </form> 
         </div>
