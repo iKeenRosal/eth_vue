@@ -97,3 +97,6 @@ table {
     background: #717699;
   }
       
+  .required {
+    color: red;
+  }

@@ -14,20 +14,20 @@
         <div class="text-left">
             <form class="addgame-form text-left" @submit.prevent="onSubmit">
                 <div class="form-group">
-                    <label for="publisher">Publisher</label>
+                    <label for="publisher">Publisher<span class="required">*</span></label>
                     <input class="form-control" id="publisher" v-model="publisher" placeholder="Enter Publisher">
                 </div>
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Name<span class="required">*</span></label>
                     <input class="form-control" id="name" v-model="name" placeholder="Enter Name">
                 </div>
                 <div class="form-group">
-                    <label for="nickname">Nickname</label>
+                    <label for="nickname">Nickname<span class="required">*</span></label>
                     <input class="form-control" id="nickname" v-model="nickname" placeholder="Enter Nickname">
                 </div>
                 <div class="form-group">
                     <br/>
-                    <label for="rating">Rating</label>&nbsp;&nbsp;
+                    <label for="rating">Rating<span class="required">*</span></label>&nbsp;&nbsp;
                     <select class="bootstraps-select" id="rating" v-model.number="rating">
                         <option value="-1" selected="selected">Select Rating Here</option>
                         <option value="5">5</option>
