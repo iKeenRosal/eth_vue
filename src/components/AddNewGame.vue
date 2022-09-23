@@ -64,7 +64,7 @@ export default {
     },
     methods: {
       onSubmit() {
-        if (this.publisher === '' || this.name === '' || this.nickname === '' || this.rating === null) {
+        if (this.publisher === '' || this.name === '' || this.nickname === '' || this.rating === null || this.rating == '-1') {
           this.successMsg = false;
           this.errorMsg = true;
           return
