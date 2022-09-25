@@ -40,6 +40,7 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <input type="hidden" id="index" ref="index" :value="currentGameData.index">
                     <br/>
                     <button class="btn btn-secondary" @click="cancelChanges">Cancel</button>
                     &nbsp;&nbsp;
@@ -85,7 +86,10 @@ export default {
 
       for(let index=0; index < this.newgames.length; ++index) {
         const element = this.newgames[index];
-        if(element.publisher == this.$refs['publisher'].value && element.name == this.$refs['name'].value) {
+
+        if(element.publisher == this.$refs['publisher'].value && element.name == this.$refs['name'].value
+          && element.index != this.$refs['index'].value //and not the current element
+        ) {
             this.successMsg = false;
             this.errorMsg = false;
             this.errorMsgDuplicate = true;
@@ -105,20 +109,3 @@ export default {
   }
 }
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

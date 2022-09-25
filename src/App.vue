@@ -4,17 +4,17 @@
       <div class="col-lg-8">
         <div>
           <h3>List of Games</h3>
-            <div>
-              <hr class="bg-info">
-              <div class="alert alert-info" v-if="!hasGames">
-                  There is currently no games in the list. Add a new game.
-              </div>
-              <div class="alert alert-danger" v-if="errorMsg">
-                  Keyword(s) was not found
-              </div>
-              <div class="alert alert-success" v-if="successMsg">
-                  Keyword(s) found below
-              </div>
+          <div>
+            <hr class="bg-info">
+            <div class="alert alert-info" v-if="!hasGames">
+                There is currently no games in the list. Add a new game.
+            </div>
+            <div class="alert alert-danger" v-if="errorMsg">
+                Keyword(s) was not found
+            </div>
+            <div class="alert alert-success" v-if="successMsg">
+                Keyword(s) found below
+            </div>
           </div>
           <GameList v-if="newgames.length" :newgames="newgames" @fireEditForm="updateFormAppVue" @deleteRecord="deleteRecord"/>
         </div>
@@ -26,7 +26,6 @@
         <hr class="" />
         <div id="actionGameContainer" class="bg-light p-3 border border-primary">
           <div v-if="editAction">
-            <!-- EditGame @editgame-submitted="editGame" v-if="currentGameData.array" :currentGameData="currentGameData"/ -->
             <EditGame @editgame-submitted="editGame" :currentGameData="currentGameData" :newgames="newgames" @fireEditFormSubmit="updateFormSubmitAppVue" @cancelUpdate="cancelUpdate"/>
           </div>
           <div v-if="addAction">
@@ -60,9 +59,9 @@ export default {
       rowCounter: 0,
       currentGameData: [],
       newgames: [
-        {publisher: "Activision", name: "Saga", nickname: "top down", rating:"5"},
-        {publisher: "Roblox Corporation", name: "Roblox", nickname: "Nephew's Favorite Games", rating:"5"},
-        {publisher: "Moonton", name: "Mobile Legends: Bang Bang", nickname: "ML or MLBB - mobile multiplayer", rating:"5"},
+        {index: 0, publisher: "Activision", name: "Saga", nickname: "top down", rating:"5"},
+        {index: 1, publisher: "Roblox Corporation", name: "Roblox", nickname: "Nephew's Favorite Games", rating:"5"},
+        {index: 2, publisher: "Moonton", name: "Mobile Legends: Bang Bang", nickname: "ML or MLBB - mobile multiplayer", rating:"5"},
       ]
     }
   },
@@ -78,6 +77,7 @@ export default {
       this.rowCounter = this.newgames.length;
    },
    addGame(newgame) {
+      newgame.index = this.rowCounter;  //this is temporary until we are saving in the database
       this.newgames.push(newgame);
       this.hasGames = true;
       this.rowCounter++;
