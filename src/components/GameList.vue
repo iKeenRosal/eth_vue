@@ -2,7 +2,7 @@
     <table id="listOfGames" class="table table-bordered table-stripped mr-20">
         <thead>
           <tr class="text-center bg-dark text-light">
-            <th>Index</th>
+            <!--th>Index</th-->
             <th>Publisher</th>
             <th>Name</th>
             <th>Nickname</th>
@@ -13,7 +13,7 @@
         </thead>
         <tbody>
           <tr class="text-center" v-for="(newgame, index) in newgames" :key="index" >
-            <td>{{ newgame.index }}</td>
+            <!--td>{{ newgame.index }}</td-->
             <td>{{ newgame.publisher }}</td> <!-- plain text -->
             <td>{{ newgame.name }}</td>
             <td>{{ newgame.nickname }}</td>
