@@ -16,7 +16,7 @@
                 Keyword(s) found below
             </div>
           </div>
-          <GameList v-if="newgames.length" :newgames="newgames" @fireEditForm="updateFormAppVue" @deleteRecord="deleteRecord"/>
+          <GameList v-if="allgames.length" :allgames="allgames" :searchedGames="searchedGames" @fireEditForm="updateFormAppVue" @deleteRecord="deleteRecord"/>
         </div>
       </div>
       <div class="col-lg-3 float-right">
@@ -26,10 +26,10 @@
         <hr class="" />
         <div id="actionGameContainer" class="bg-light p-3 border border-primary">
           <div v-if="editAction">
-            <EditGame @editgame-submitted="editGame" :currentGameData="currentGameData" :newgames="newgames" @fireEditFormSubmit="updateFormSubmitAppVue" @cancelUpdate="cancelUpdate"/>
+            <EditGame @editgame-submitted="editGame" :currentGameData="currentGameData" :allgames="allgames" @fireEditFormSubmit="updateFormSubmitAppVue" @cancelUpdate="cancelUpdate"/>
           </div>
           <div v-if="addAction">
-            <AddNewGame @addgame-submitted="addGame" :newgames="newgames"/>
+            <AddNewGame @addgame-submitted="addGame" :allgames="allgames"/>
           </div>
         </div>
       </div>
@@ -57,8 +57,9 @@ export default {
       addAction: true,
       hasGames: false,
       rowCounter: 0,
+      searchedGames: [],
       currentGameData: [],
-      newgames: [
+      allgames: [
         {index: 0, publisher: "Activision", name: "Saga", nickname: "top down", rating:"5"},
         {index: 1, publisher: "Roblox Corporation", name: "Roblox", nickname: "Nephew's Favorite Games", rating:"5"},
         {index: 2, publisher: "Moonton", name: "Mobile Legends: Bang Bang", nickname: "ML or MLBB - mobile multiplayer", rating:"5"},
@@ -70,15 +71,15 @@ export default {
   },
   methods: {
    onLoad() {
-      if(this.newgames != null)
+      if(this.allgames != null)
       {
         this.hasGames = true;
       }
-      this.rowCounter = this.newgames.length;
+      this.rowCounter = this.allgames.length;
    },
    addGame(newgame) {
       newgame.index = this.rowCounter;  //this is temporary until we are saving in the database
-      this.newgames.push(newgame);
+      this.allgames.push(newgame);
       this.hasGames = true;
       this.rowCounter++;
     },
@@ -102,7 +103,7 @@ export default {
     },
     deleteRecord: function(index) {
       this.rowCounter--;
-      this.newgames.splice(index, 1);
+      this.allgames.splice(index, 1);
 
       if(this.rowCounter==0)
       {

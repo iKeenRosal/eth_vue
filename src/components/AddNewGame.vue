@@ -56,7 +56,7 @@
 export default {
   name: 'AddNewGame',
   props: {
-    newgames: {
+    allgames: {
       type: Array,
       required: true
     }
@@ -81,8 +81,8 @@ export default {
                 return
             }
 
-            for(let index=0; index < this.newgames.length; ++index) {
-                const element = this.newgames[index];
+            for(let index=0; index < this.allgames.length; ++index) {
+                const element = this.allgames[index];
                 if(element.publisher == this.publisher && element.name == this.name) {
                     this.successMsg = false;
                     this.errorMsg = false;

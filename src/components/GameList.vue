@@ -12,13 +12,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="text-center" v-for="(newgame, index) in newgames" :key="index" >
-            <!--td>{{ newgame.index }}</td-->
-            <td>{{ newgame.publisher }}</td> <!-- plain text -->
-            <td>{{ newgame.name }}</td>
-            <td>{{ newgame.nickname }}</td>
-            <td>{{ newgame.rating }}</td>
-            <td><button class="text-success" @click='updateRowForm(index, newgame)'><i class="fa fa-edit"></i></button></td>
+          <tr class="text-center" v-for="(game, index) in games" :key="index" >
+            <!--td>{{ game.index }}</td-->
+            <td>{{ game.publisher }}</td> <!-- plain text -->
+            <td>{{ game.name }}</td>
+            <td>{{ game.nickname }}</td>
+            <td>{{ game.rating }}</td>
+            <td><button class="text-success" @click='updateRowForm(index, game)'><i class="fa fa-edit"></i></button></td>
             <td><button class="text-danger" @click='removeRow(index)'><i class="fa fa-trash"></i></button></td>
           </tr>
         </tbody>
@@ -30,17 +30,25 @@
 export default {
   el: '#listOfGames',
   //name: 'GameList',
-  //---------- Sorting and Pagination addition below -----------//
-  // CURRENTLY DOESN"T WORK.. 
   data () {
     return {
+      games: [],
       currentPage: 1,
       elementsPerPage: 2,
       ascending: false,
       sortColumn: '',
+      gamesSearched: '',
     }
   },
   methods: {
+    onLoad() {
+      console.log('');
+      this.games = this.allgames;
+//      if(this.searchedGames != null)
+//      {
+//        this.games = this.searchedGames;
+//      }
+    },
     updateRowForm: function(index, currentgame) {
       this.currentGame = currentgame;
       this.$emit('fireEditForm', currentgame);
@@ -49,6 +57,8 @@ export default {
       this.$emit('deleteRecord', index);
 
     },
+    //---------- Sorting and Pagination addition below -----------//
+    // CURRENTLY DOESN"T WORK.. 
     "sortTable": function sortTable(col) {
       if (this.sortColumn === col) {
         this.ascending = !this.ascending;
@@ -90,10 +100,17 @@ export default {
   },
   //---------- Sorting and Pagination addition above -----------//
   props: {
-    newgames: {
+    allgames: {
+      type: Array,
+      required: true
+    },
+    searchedGames: {
       type: Array,
       required: true
     }
+  },
+   mounted: function() {
+    this.onLoad();
   },
 }
 </script>
