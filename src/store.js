@@ -1,10 +1,10 @@
-// require('./assets/css/styles.css');
-
+//import Vue from 'vue';
 import { createApp } from 'vue'
-import App from './App.vue'
-import { createStore } from 'vuex';
+import Vuex from 'vuex';
 
-const store = createStore({
+createApp.use(Vuex);
+
+export const store = new Vuex.Store({
     state: {
         editAction: false,
         addAction: true,
@@ -21,7 +21,3 @@ const store = createStore({
     // mutations: {
     // }
 });
-
-let app = createApp(App);
-app.use(store);
-app.mount('#app');

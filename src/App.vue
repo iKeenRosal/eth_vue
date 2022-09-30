@@ -1,40 +1,24 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-8">
-        <div>
-          <h3>List of Games</h3>
+    <h1>Hi Hello Howdie</h1>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8">
           <div>
-            <hr class="bg-info">
-            <div class="alert alert-info" v-if="!hasGames">
-                There is currently no games in the list. Add a new game.
-            </div>
-            <div class="alert alert-danger" v-if="errorMsg">
-                Keyword(s) was not found
-            </div>
-            <div class="alert alert-success" v-if="successMsg">
-                Keyword(s) found below
-            </div>
+            <GameList />
           </div>
-          <GameList v-if="allgames.length" :allgames="allgames" :searchedGames="searchedGames" @fireEditForm="updateFormAppVue" @deleteRecord="deleteRecord"/>
         </div>
-      </div>
-      <div class="col-lg-3 float-right">
-        <div id="actionGameContainer" class="bg-light p-3 border">
-          <SearchForm />
-        </div>
-        <hr class="" />
-        <div id="actionGameContainer" class="bg-light p-3 border border-primary">
-          <div v-if="editAction">
-            <EditGame @editgame-submitted="editGame" :currentGameData="currentGameData" :allgames="allgames" @fireEditFormSubmit="updateFormSubmitAppVue" @cancelUpdate="cancelUpdate"/>
+        <div class="col-lg-3 float-right">
+          <div id="actionGameContainer" class="bg-light p-3 border">
+            <SearchForm />
           </div>
-          <div v-if="addAction">
-            <AddNewGame @addgame-submitted="addGame" :allgames="allgames"/>
+          <hr class="" />
+          <div id="actionGameContainer" class="bg-light p-3 border border-primary">
+              <EditGame />
+              <AddNewGame />
           </div>
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -44,77 +28,15 @@ import SearchForm from './components/SearchForm.vue'
 import GameList from './components/GameList.vue'
 
 export default {
-  name: 'App',
+  // name: 'app',
   components: {
     AddNewGame,
     EditGame,
     SearchForm,
     GameList,
   },
-  data () {
-    return {
-      editAction: false,
-      addAction: true,
-      hasGames: false,
-      rowCounter: 0,
-      searchedGames: [],
-      currentGameData: [],
-      allgames: [
-        {index: 0, publisher: "Activision", name: "Saga", nickname: "top down", rating:"5"},
-        {index: 1, publisher: "Roblox Corporation", name: "Roblox", nickname: "Nephew's Favorite Games", rating:"5"},
-        {index: 2, publisher: "Moonton", name: "Mobile Legends: Bang Bang", nickname: "ML or MLBB - mobile multiplayer", rating:"5"},
-      ]
-    }
-  },
-  mounted: function() {
-    this.onLoad();
-  },
-  methods: {
-   onLoad() {
-      if(this.allgames != null)
-      {
-        this.hasGames = true;
-      }
-      this.rowCounter = this.allgames.length;
-   },
-   addGame(newgame) {
-      newgame.index = this.rowCounter;  //this is temporary until we are saving in the database
-      this.allgames.push(newgame);
-      this.hasGames = true;
-      this.rowCounter++;
-    },
-    updateFormAppVue: function(currentgame) { 
-      this.editAction = true;
-      this.addAction = false;
-      this.currentGameData = currentgame; //for now sending name. pass array later.
-    },
-    updateFormSubmitAppVue: function(currentgame) {
-      this.currentGameData.publisher = currentgame['publisher'].value;
-      this.currentGameData.name = currentgame['name'].value;
-      this.currentGameData.nickname = currentgame['nickname'].value;
-      this.currentGameData.rating = currentgame['rating'].value;
-    },
-    cancelUpdate: function() {
-      this.editAction = false;
-      this.addAction = true;
-    },
-    cancelAdd: function() {
-      alert('nothing changes here');
-    },
-    deleteRecord: function(index) {
-      this.rowCounter--;
-      this.allgames.splice(index, 1);
-
-      if(this.rowCounter==0)
-      {
-        this.hasGames = false;
-      }
-    },
-  },
 }
-
 </script>
-
 
 <style>
 #app {

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 8092",    
+    "serve": "vue-cli-service serve --port 8092",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -11,7 +11,8 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.1",
     "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "vue": "^3.2.13",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
